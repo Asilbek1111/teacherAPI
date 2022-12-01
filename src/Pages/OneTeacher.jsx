@@ -117,7 +117,7 @@ export default function OneTeacher() {
                             className="form-control"
                             id="inputEmail3"
                             placeholder="Edu Type"
-                            // value={data.educationType.code}
+                            value={data.educationType.name}
                           />
                           {/* <h2>{data.educationType.name}</h2> */}
                         </div>
