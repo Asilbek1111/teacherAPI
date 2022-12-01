@@ -38,14 +38,24 @@ export default function OneTeacher() {
       {isLoaded ? (
         <div> Loading...</div>
       ) : (
-        <div class="content-wrapper" style={{ width: "80%", margin: "auto" }}>
+        <div
+          class="content-wrapper"
+          style={{
+            width: "80%",
+            margin: "auto",
+            marginTop: "5rem",
+            paddingTop: "2rem",
+          }}
+        >
+          <h1 className="text-center">Talaba Ma'lumoti</h1>
           <section
             className="content"
             style={{
               width: "100%",
               margin: "auto",
               padding: "20px",
-              paddingTop: "3rem",
+              paddingTop: "4rem",
+              paddingBottom: "6rem",
             }}
           >
             <div className="row">
@@ -63,21 +73,17 @@ export default function OneTeacher() {
                           className="form-control"
                           id="exampleInputEmail1"
                           placeholder="Full Name"
-                          // value={data.full_name}
+                          value={data?.full_name}
                         />
                       </div>
                       <div className="form-group">
                         <label htmlFor="exampleInputPassword1">
                           Department
                         </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="exampleInputPassword1"
-                          placeholder="Department"
-                          // value={data.department.name}
-                        />
-                        {/* <h2>{data.department}</h2> */}
+
+                        <h2 className="form-control">
+                          {data?.department?.name}
+                        </h2>
                       </div>
                       <div className="form-group">
                         <label htmlFor="exampleInputFile">File input</label>
@@ -112,14 +118,9 @@ export default function OneTeacher() {
                           Edu Type
                         </label>
                         <div className="col-sm-10">
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="inputEmail3"
-                            placeholder="Edu Type"
-                            value={data.educationType.name}
-                          />
-                          {/* <h2>{data.educationType.name}</h2> */}
+                          <h2 className="form-control">
+                            {data?.educationType?.name}
+                          </h2>
                         </div>
                       </div>
                       <div className="form-group">
@@ -130,14 +131,9 @@ export default function OneTeacher() {
                           Edu Form
                         </label>
                         <div className="col-sm-10">
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="inputPassword3"
-                            placeholder="Edu form"
-                            // value={data.educationForm.code}
-                          />
-                          {/* <h2>{data.educationForm.name}</h2> */}
+                          <h2 className="form-control">
+                            {data?.educationForm?.name}
+                          </h2>
                         </div>
                       </div>
                       <div className="form-group">
@@ -157,24 +153,15 @@ export default function OneTeacher() {
                     <form role="form">
                       <div className="form-group">
                         <label>Semester</label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          placeholder="Enter ..."
-                          // value={data.semester.code}
-                        />
-                        {/* <h2>{data.semester.name}</h2> */}
+
+                        <h2 className="form-control">{data?.semester?.name}</h2>
                       </div>
                       <div className="form-group">
                         <label>Status</label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          placeholder="Enter ..."
-                          disabled
-                          // value={data.studentStatus.code}
-                        />
-                        {/* <h2>{data.studentStatus.name}</h2> */}
+
+                        <h2 className="form-control">
+                          {data?.studentStatus?.name}
+                        </h2>
                       </div>
                     </form>
                   </div>
