@@ -23,7 +23,7 @@ export default function Dashboard() {
       .then((res) => res.json())
       .then(
         (result) => {
-          setIsLoaded(true);
+          setIsLoaded(false);
           setData(result.data.items);
           console.log(result);
         },
@@ -37,7 +37,7 @@ export default function Dashboard() {
 
   if (error) {
     return <div>Error: {error.message}</div>;
-  } else if (!isLoaded) {
+  } else if (isLoaded) {
     return <div>Loading...</div>;
   } else {
     return (
