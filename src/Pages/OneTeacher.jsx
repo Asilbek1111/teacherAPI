@@ -117,7 +117,7 @@ export default function OneTeacher() {
                             className="form-control"
                             id="inputEmail3"
                             placeholder="Edu Type"
-                            value={data.educationType.name}
+                            value={data.educationType.code}
                           />
                           {/* <h2>{data.educationType.name}</h2> */}
                         </div>
@@ -135,7 +135,7 @@ export default function OneTeacher() {
                             className="form-control"
                             id="inputPassword3"
                             placeholder="Edu form"
-                            value={data.educationForm.name}
+                            value={data.educationForm.code}
                           />
                           {/* <h2>{data.educationForm.name}</h2> */}
                         </div>
@@ -161,7 +161,7 @@ export default function OneTeacher() {
                           type="text"
                           className="form-control"
                           placeholder="Enter ..."
-                          value={data.semester.name}
+                          value={data.semester.code}
                         />
                         {/* <h2>{data.semester.name}</h2> */}
                       </div>
@@ -172,7 +172,7 @@ export default function OneTeacher() {
                           className="form-control"
                           placeholder="Enter ..."
                           disabled
-                          value={data.studentStatus.name}
+                          value={data.studentStatus.code}
                         />
                         {/* <h2>{data.studentStatus.name}</h2> */}
                       </div>
