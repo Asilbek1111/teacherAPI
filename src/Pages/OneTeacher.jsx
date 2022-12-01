@@ -63,7 +63,7 @@ export default function OneTeacher() {
                           className="form-control"
                           id="exampleInputEmail1"
                           placeholder="Full Name"
-                          value={data.full_name}
+                          // value={data.full_name}
                         />
                       </div>
                       <div className="form-group">
@@ -75,7 +75,7 @@ export default function OneTeacher() {
                           className="form-control"
                           id="exampleInputPassword1"
                           placeholder="Department"
-                          value={data.department.name}
+                          // value={data.department.name}
                         />
                         {/* <h2>{data.department}</h2> */}
                       </div>
@@ -117,7 +117,7 @@ export default function OneTeacher() {
                             className="form-control"
                             id="inputEmail3"
                             placeholder="Edu Type"
-                            value={data.educationType.code}
+                            // value={data.educationType.code}
                           />
                           {/* <h2>{data.educationType.name}</h2> */}
                         </div>
@@ -135,7 +135,7 @@ export default function OneTeacher() {
                             className="form-control"
                             id="inputPassword3"
                             placeholder="Edu form"
-                            value={data.educationForm.code}
+                            // value={data.educationForm.code}
                           />
                           {/* <h2>{data.educationForm.name}</h2> */}
                         </div>
@@ -161,7 +161,7 @@ export default function OneTeacher() {
                           type="text"
                           className="form-control"
                           placeholder="Enter ..."
-                          value={data.semester.code}
+                          // value={data.semester.code}
                         />
                         {/* <h2>{data.semester.name}</h2> */}
                       </div>
@@ -172,7 +172,7 @@ export default function OneTeacher() {
                           className="form-control"
                           placeholder="Enter ..."
                           disabled
-                          value={data.studentStatus.code}
+                          // value={data.studentStatus.code}
                         />
                         {/* <h2>{data.studentStatus.name}</h2> */}
                       </div>
