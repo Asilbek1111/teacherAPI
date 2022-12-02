@@ -1,0 +1,53 @@
+.login {
+  position: relative;
+  color: #01384D;
+}
+
+.login .container {
+  width: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  top: 17rem;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.login .container form {
+  border: 1px solid #01384D;
+  padding: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.login .container form h1 {
+  text-align: center;
+}
+
+.login .container form input {
+  border: 1px solid #01384D;
+  margin: 0 auto;
+  padding: 1rem 10px;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.login .container form button {
+  border: 1px solid #01384D;
+  margin: 0 auto;
+  padding: 1rem 4rem;
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  background-color: #01384D;
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+}
+/*# sourceMappingURL=Login.css.map */

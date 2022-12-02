@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import BasicTabs from "../components/Tab";
 import { MyContext } from "../Contexts/Context";
 
 export default function OneTeacher() {
@@ -169,6 +170,9 @@ export default function OneTeacher() {
               </div>
             </div>
           </section>
+          <div className="post"></div>
+
+          <BasicTabs />
         </div>
       )}
     </>
