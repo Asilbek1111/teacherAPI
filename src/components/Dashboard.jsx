@@ -87,7 +87,9 @@ export default function Dashboard() {
                             <td>
                               <Link
                                 to="/teacher"
-                                onClick={() => setteacherId(e.id)}
+                                onClick={() =>
+                                  setteacherId(e.student_id_number)
+                                }
                               >
                                 {e.short_name}
                               </Link>

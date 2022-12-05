@@ -6,7 +6,11 @@ export default function OneTeacher() {
   const [data, setData] = useState([]);
   const { teacherId, setteacherId } = useContext(MyContext);
   const [error, setError] = useState(null);
+  const [error2, setError2] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded2, setIsLoaded2] = useState(false);
+  const [ourData, setOurData] = useState([]);
+
   useEffect(() => {
     fetch(
       `https://student.uzswlu.uz/rest/v1/data/student-list?_department=22&id=${teacherId}`,
@@ -22,14 +26,40 @@ export default function OneTeacher() {
       .then(
         (json) => {
           // console.log(json);
-          setData(...json.data.items.filter((e) => e.id == teacherId));
+          setData(
+            ...json.data.items.filter((e) => e.student_id_number == teacherId)
+          );
           setIsLoaded(false);
-          console.log(data);
+          // console.log(data);
         },
 
         (error) => {
           setIsLoaded(true);
           setError(error);
+        }
+      );
+  }, []);
+
+  {
+    /*Our Api*/
+  }
+
+  useEffect(() => {
+    fetch(
+      `https://university-docs-production.up.railway.app/api/student/info/326201100402`
+    )
+      .then((response) => response.json())
+      .then(
+        (res) => {
+          console.log(res.data);
+          setOurData(res.data);
+          setIsLoaded2(false);
+          // console.log(ourData)
+        },
+
+        (error) => {
+          setIsLoaded2(true);
+          setError2(error);
         }
       );
   }, []);
@@ -170,7 +200,46 @@ export default function OneTeacher() {
               </div>
             </div>
           </section>
-          <div className="post"></div>
+          <div className="getreq container">
+            <h1>Qo'shimcha ma'lumotlar</h1>
+            <label>Employment Field</label>
+            <h2 className="form-control">{ourData.employmentField}</h2>
+            <label>Employment Type</label>
+            <h2 className="form-control">{ourData.employmentType}</h2>
+            <label>Is Leader?</label>
+            <h2 className="form-control">
+              {ourData.isLeader == false && "No"}
+              {ourData.isLeader == true && "Yes"}
+            </h2>
+            <label>Status</label>
+            <h2 className="form-control">{ourData.status}</h2>
+            <label>Passport Image</label><br />
+            <a
+              href={`https://university-docs-production.up.railway.app/${ourData.passportUrl}`}
+              download="passport"
+              target="_blank"
+            >
+              <img
+                src={`https://university-docs-production.up.railway.app/${ourData.passportUrl}`}
+                alt=""
+                download
+                width={200}
+              />
+            </a><br></br>
+            <label>Document Image</label><br />
+            <a
+              href={`https://university-docs-production.up.railway.app/${ourData.documentUrl}`}
+              download="document"
+              target="_blank"
+            >
+              <img
+                src={`https://university-docs-production.up.railway.app/${ourData.documentUrl}`}
+                alt=""
+                download
+                width={200}
+              />
+            </a>
+          </div>
 
           <BasicTabs />
         </div>
