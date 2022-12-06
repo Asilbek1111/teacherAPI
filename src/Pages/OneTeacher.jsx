@@ -51,8 +51,8 @@ export default function OneTeacher() {
       .then((response) => response.json())
       .then(
         (res) => {
-          console.log(res.data);
-          setOurData(res.data);
+          console.log(res.data.student);
+          setOurData(res.data.student);
           setIsLoaded2(false);
           // console.log(ourData)
         },
@@ -213,7 +213,8 @@ export default function OneTeacher() {
             </h2>
             <label>Status</label>
             <h2 className="form-control">{ourData.status}</h2>
-            <label>Passport Image</label><br />
+            <label>Passport Image</label>
+            <br />
             <a
               href={`https://university-docs-production.up.railway.app/${ourData.passportUrl}`}
               download="passport"
@@ -225,8 +226,10 @@ export default function OneTeacher() {
                 download
                 width={200}
               />
-            </a><br></br>
-            <label>Document Image</label><br />
+            </a>
+            <br></br>
+            <label>Document Image</label>
+            <br />
             <a
               href={`https://university-docs-production.up.railway.app/${ourData.documentUrl}`}
               download="document"

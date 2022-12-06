@@ -2,7 +2,9 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { MyContext } from "../Contexts/Context";
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -32,8 +34,83 @@ function a11yProps(index) {
 }
 
 export default function BasicTabs() {
+  
   const [value, setValue] = useState(0);
+  const { teacherId, setteacherId } = useContext(MyContext);
+  // const [status, setStatus] = useContext("")
+  // const [employmentType, setEmployentType] = useContext("");
+  // const [employmentFieldId, setemploymentFieldId] = useContext("");
+  // const [leader, setLeader] = useContext(null)
+  // const [interestIds, setInterestIds] = useContext("")
+  // const [imgSrc, setImgSrc] = useState(null);
+  // const [image, setImage] = useState(null);
+//  const handleImageUpload = (e) => {
+//    const img = e.target.files;
+//    const url = URL.createObjectURL(img[0]);
+//    setImgSrc(url);
+//    setImage(img);
+//  };
 
+//   let Submit = ()=>{
+//     var formdata = new FormData();
+//     formdata.append("hemisStudentId", teacherId);
+//     formdata.append("status", "SINGLE");
+//     formdata.append("employmentType", "WORKS_FORMAL");
+//     formdata.append(
+//       "employmentFieldId",
+//       "045a5bd0-ae87-4180-8b6f-199a4e779988"
+//     );
+//     formdata.append("leader", "true");
+//     formdata.append("interestIds", "94b1af74-8e4f-4328-8554-c78a8d678d0f");
+//     formdata.append(
+//       "passportImg",
+//       // fileInput.files[0],
+//       "/C:/Users/admin/Pictures/1.jpg"
+//     );
+//     formdata.append(
+//       "doc",
+//       // fileInput.files[0],
+//       "/C:/Users/admin/Pictures/3.png"
+//     );
+//     formdata.append("interestIds", "f781fd04-8692-462a-9ea7-9d26d8eaa1d6");
+//     formdata.append("tutorId", "78a5a035-92de-4e89-9d24-c9e3707c3a30");
+
+//     var requestOptions = {
+//       method: "POST",
+//       body: formdata,
+//       redirect: "follow",
+//     };
+
+//     fetch(
+//       "https://university-docs-production.up.railway.app/api/student",
+//       requestOptions
+//     )
+//       .then((response) => response.text())
+//       .then((result) => console.log(result))
+//       .catch((error) => console.log("error", error));
+//   }
+
+useEffect(() => {
+  fetch(
+    `https://university-docs-production.up.railway.app/api/student/info/${teacherId}`
+  )
+    .then((response) => response.json())
+    .then(
+      (res) => {
+        console.log(res.data.student);
+        setOurData(res.data.student);
+        setIsLoaded2(false);
+        // console.log(ourData)
+      },
+
+      (error) => {
+        setIsLoaded2(true);
+        setError2(error);
+      }
+    );
+}, []);
+  
+  
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -94,9 +171,22 @@ export default function BasicTabs() {
                         placeholder="Tutor name"
                       />
                     </div>
-                    <div className="form-group">
-                      <label htmlFor="exampleInputFile">Passport</label>
-                      <input type="file" id="exampleInputFile" />
+                    <div>
+                      <label htmlFor="imgDoctor" className="cursor-pointer">
+                        <img
+                          // src={imgSrc}
+                          style={{ width: "240px", height: "240px" }}
+                          className="object-cover object-center mx-auto"
+                        />
+                      </label>
+                      <input
+                        type="file"
+                        id="imgDoctor"
+                        className="invisible"
+                        // enctype="multipart/form-data"
+                        accept="image/*"
+                        // onChange={(e) => handleImageUpload(e)}
+                      />
                     </div>
                     <div className="form-group">
                       <label htmlFor="exampleInputFile1">Document</label>
@@ -111,12 +201,34 @@ export default function BasicTabs() {
                   <h3 className="box-title">Interest of Student</h3>
                 </div>
                 <div className="box-body">
-                  <input
-                    type="text"
-                    className="form-control"
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
                     id="exampleInputEmail2"
                     placeholder="Interest of student"
-                  />
+                  >
+                    <option value="03de6e03-c58b-4d91-a2ee-b3c1ee5dab37">
+                      Kitob o'qish
+                    </option>
+                    <option value="26158977-e790-4901-ba2b-6dad2e1be761">
+                      Rassomchilik
+                    </option>
+                    <option value="bd43ea89-2401-47a1-8a56-53e71a52d297">
+                      Pazandachilik
+                    </option>
+                    <option value="f781fd04-8692-462a-9ea7-9d26d8eaa1d6">
+                      IT sohasi
+                    </option>
+                    <option value="94b1af74-8e4f-4328-8554-c78a8d678d0f">
+                      Marketing
+                    </option>
+                    <option value="af3384f6-5684-40ec-a82b-fd4e1e463e3e">
+                      Sport
+                    </option>
+                    <option value="09404c40-00e7-45ee-813e-f297736b9b41">
+                      Musiqa
+                    </option>
+                  </select>
                 </div>
               </div>
             </div>
