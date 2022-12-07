@@ -46,7 +46,7 @@ export default function OneTeacher() {
 
   useEffect(() => {
     fetch(
-      `https://university-docs-production.up.railway.app/api/student/info/326201100402`
+      `https://university-docs-production.up.railway.app/api/student/info/${teacherId}`
     )
       .then((response) => response.json())
       .then(

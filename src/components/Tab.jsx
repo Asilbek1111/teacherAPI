@@ -34,62 +34,62 @@ function a11yProps(index) {
 
 export default function BasicTabs() {
   const [value, setValue] = useState(0);
-  const { teacherId, setteacherId } = useContext(MyContext);
-  // const [status, setStatus] = useContext("")
-  // const [employmentType, setEmployentType] = useContext("");
-  // const [employmentFieldId, setemploymentFieldId] = useContext("");
-  // const [leader, setLeader] = useContext(null)
+  const { teacherId, setteacherId, study, setStudy, fieldId, setFieldId } =
+    useContext(MyContext);
+
+  const [status, setStatus] = useState("");
+  const [employmentType, setEmploymentType] = useState("");
+  const [employmentFieldId, setemploymentFieldId] = useState("");
+  const [leader, setLeader] = useState(null);
   const [interestIds, setInterestIds] = useState("");
-  const [study, setStudy] = useState("");
-  // const [imgSrc, setImgSrc] = useState(null);
-  // const [image, setImage] = useState(null);
-  //  const handleImageUpload = (e) => {
-  //    const img = e.target.files;
-  //    const url = URL.createObjectURL(img[0]);
-  //    setImgSrc(url);
-  //    setImage(img);
-  //  };
+  const [study1, setStudy1] = useState([]);
+  const [imgSrc, setImgSrc] = useState(null);
+  const [image, setImage] = useState(null);
+  const [imgSrc2, setImgSrc2] = useState(null);
+  const [image2, setImage2] = useState(null);
 
-  //   let Submit = ()=>{
-  //     var formdata = new FormData();
-  //     formdata.append("hemisStudentId", teacherId);
-  //     formdata.append("status", "SINGLE");
-  //     formdata.append("employmentType", "WORKS_FORMAL");
-  //     formdata.append(
-  //       "employmentFieldId",
-  //       "045a5bd0-ae87-4180-8b6f-199a4e779988"
-  //     );
-  //     formdata.append("leader", "true");
-  //     formdata.append("interestIds", "94b1af74-8e4f-4328-8554-c78a8d678d0f");
-  //     formdata.append(
-  //       "passportImg",
-  //       // fileInput.files[0],
-  //       "/C:/Users/admin/Pictures/1.jpg"
-  //     );
-  //     formdata.append(
-  //       "doc",
-  //       // fileInput.files[0],
-  //       "/C:/Users/admin/Pictures/3.png"
-  //     );
-  //     formdata.append("interestIds", "f781fd04-8692-462a-9ea7-9d26d8eaa1d6");
-  //     formdata.append("tutorId", "78a5a035-92de-4e89-9d24-c9e3707c3a30");
+  const handleImageUpload = (e) => {
+    const img = e.target.files;
+    const url = URL.createObjectURL(img[0]);
+    setImgSrc(url);
+    setImage(img);
+  };
+  const handleImageUpload2 = (e) => {
+    const img2 = e.target.files;
+    const url2 = URL.createObjectURL(img2[0]);
+    setImgSrc2(url2);
+    setImage2(img2);
+  };
 
-  //     var requestOptions = {
-  //       method: "POST",
-  //       body: formdata,
-  //       redirect: "follow",
-  //     };
+  let Submit = () => {
+    var formdata = new FormData();
+    formdata.append("hemisStudentId", teacherId);
+    formdata.append("status", status);
+    formdata.append("employmentType", employmentType);
+    formdata.append("employmentFieldId", employmentFieldId);
+    formdata.append("leader", leader);
+    formdata.append("interestIds", interestIds);
+    formdata.append("passportImg", image[0]);
+    formdata.append("doc", image2[0]);
+    formdata.append("tutorId", tutor);
 
-  //     fetch(
-  //       "https://university-docs-production.up.railway.app/api/student",
-  //       requestOptions
-  //     )
-  //       .then((response) => response.text())
-  //       .then((result) => console.log(result))
-  //       .catch((error) => console.log("error", error));
-  //   }
+    var requestOptions = {
+      method: "POST",
+      body: formdata,
+      redirect: "follow",
+    };
+
+    fetch(
+      "https://university-docs-production.up.railway.app/api/student",
+      requestOptions
+    )
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
+  };
   const [isLoaded5, setIsLoaded5] = useState(false);
   const [ourData1, setOurData1] = useState([]);
+  const [tutor, setTutor] = useState("");
 
   useEffect(() => {
     fetch(
@@ -98,9 +98,12 @@ export default function BasicTabs() {
       .then((response) => response.json())
       .then(
         (res) => {
-          console.log(res.data);
+          console.log(res.data.tutors[0].id);
           setOurData1(res.data);
           setIsLoaded5(false);
+          setStudy(res.data.fields.STUDIES);
+          setFieldId(res.data.fields.WORKS_FORMAL);
+          setTutor(res.data.tutors[0].id);
           // console.log(ourData)
         },
 
@@ -171,10 +174,11 @@ export default function BasicTabs() {
                         placeholder="Tutor name"
                       />
                     </div>
+                    <label htmlFor="exampleInputFile1">Passport</label>
                     <div>
                       <label htmlFor="imgDoctor" className="cursor-pointer">
                         <img
-                          // src={imgSrc}
+                          src={imgSrc}
                           style={{ width: "240px", height: "240px" }}
                           className="object-cover object-center mx-auto"
                         />
@@ -185,12 +189,28 @@ export default function BasicTabs() {
                         className="invisible"
                         // enctype="multipart/form-data"
                         accept="image/*"
-                        // onChange={(e) => handleImageUpload(e)}
+                        onChange={(e) => handleImageUpload(e)}
                       />
                     </div>
                     <div className="form-group">
                       <label htmlFor="exampleInputFile1">Document</label>
-                      <input type="file" id="exampleInputFile1" />
+                      <div>
+                        <label htmlFor="imgDoctor2" className="cursor-pointer">
+                          <img
+                            src={imgSrc2}
+                            style={{ width: "240px", height: "240px" }}
+                            className="object-cover object-center mx-auto"
+                          />
+                        </label>
+                        <input
+                          type="file"
+                          id="imgDoctor2"
+                          className="invisible"
+                          // enctype="multipart/form-data"
+                          accept="image/*"
+                          onChange={(e) => handleImageUpload2(e)}
+                        />
+                      </div>
                     </div>
                   </div>
                   <div className="box-footer"></div>
@@ -231,10 +251,13 @@ export default function BasicTabs() {
                         Status
                       </label>
                       <div className="col-sm-10">
-                        <select className="form-select">
-                          <option value="single">Single</option>
-                          <option value="married">Married</option>
-                          <option value="divorced">Divorced</option>
+                        <select
+                          className="form-select"
+                          onClick={(e) => setStatus(e.target.value)}
+                        >
+                          <option value="WORKS_FORMAL">WORKS FORMAL</option>
+                          <option value="UNEMPLOYED">UNEMPLOYED</option>
+                          <option value="SINGLE">SINGLE</option>
                         </select>
                       </div>
                     </div>
@@ -246,12 +269,7 @@ export default function BasicTabs() {
                         Hemis Student ID
                       </label>
                       <div className="col-sm-10">
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="exampleInputEmail5"
-                          placeholder="Id"
-                        />
+                        <h2 className="form-control">{teacherId}</h2>
                       </div>
                     </div>
                     <div className="form-group">
@@ -272,16 +290,38 @@ export default function BasicTabs() {
                     <div className="form-group">
                       <label>Employment Type</label>
 
-                      <select className="form-select">
-                        <option value="works_formal">Works formal</option>
-                        <option value="not_working">Doesn't</option>
+                      <select
+                        className="form-select"
+                        onClick={(e) => setEmploymentType(e.target.value)}
+                      >
+                        <option value="WORKS_FORMAL">WORKS_FORMAL</option>
+                        <option value="STUDIES">STUDIES</option>
+                        <option value="WORKS_INFORMAL">WORKS_INFORMAL</option>
+                        <option value="UNEMPLOYED">UNEMPLOYED</option>
+
+                        {/* <option value="divorced">Divorced</option> */}
+                      </select>
+                    </div>
+                    <div className="form-group">
+                      <label>Employment Field</label>
+                      <select
+                        className="form-select"
+                        onClick={(e) => setemploymentFieldId(e.target.value)}
+                      >
+                        {fieldId?.map((e) => (
+                          <option value={e.id}>{e.name}</option>
+                        ))}
+
                         {/* <option value="divorced">Divorced</option> */}
                       </select>
                     </div>
                     <div className="form-group">
                       <label>Is Leader?</label>
 
-                      <select className="form-select">
+                      <select
+                        className="form-select"
+                        onClick={(e) => setLeader(e.target.value)}
+                      >
                         <option value="true">Yes</option>
                         <option value="false">No</option>
                         {/* <option value="divorced">Divorced</option> */}
@@ -289,17 +329,19 @@ export default function BasicTabs() {
                       <label>Studies</label>
                       <select
                         className="form-select"
-                        // onChange={(e) => {
-                        //   setStudy(e.target.value);
-                        //   console.log(e.target.value);
-                        // }}
+                        onChange={(e) => {
+                          setStudy1(e.target.value);
+                        }}
                       >
-                        {ourData1.fields.STUDIES?.map((e) => (
+                        {study.map((e) => (
                           <option value={e.id}>{e.name}</option>
                         ))}
                       </select>
                     </div>
                   </form>
+                  <button className="btn btn-success" onClick={Submit}>
+                    POST
+                  </button>
                 </div>
               </div>
             </div>
@@ -391,10 +433,13 @@ export default function BasicTabs() {
                         Status
                       </label>
                       <div className="col-sm-10">
-                        <select className="form-select">
-                          <option value="single">Single</option>
-                          <option value="married">Married</option>
-                          <option value="divorced">Divorced</option>
+                        <select
+                          className="form-select"
+                          onClick={(e) => setStatus(e.target.value)}
+                        >
+                          <option value="WORKS_FORMAL">WORKS FORMAL</option>
+                          <option value="UNEMPLOYED">UNEMPLOYED</option>
+                          <option value="SINGLE">SINGLE</option>
                         </select>
                       </div>
                     </div>
@@ -433,8 +478,21 @@ export default function BasicTabs() {
                       <label>Employment Type</label>
 
                       <select className="form-select">
-                        <option value="works_formal">Works formal</option>
-                        <option value="not_working">Doesn't</option>
+                        <option value="WORKS_FORMAL">WORKS_FORMAL</option>
+                        <option value="STUDIES">STUDIES</option>
+                        <option value="WORKS_INFORMAL">WORKS_INFORMAL</option>
+                        <option value="UNEMPLOYED">UNEMPLOYED</option>
+
+                        {/* <option value="divorced">Divorced</option> */}
+                      </select>
+                    </div>
+                    <div className="form-group">
+                      <label>Employment Field</label>
+                      <select className="form-select">
+                        {fieldId?.map((e) => (
+                          <option value={e.id}>{e.name}</option>
+                        ))}
+
                         {/* <option value="divorced">Divorced</option> */}
                       </select>
                     </div>
