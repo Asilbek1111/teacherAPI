@@ -211,6 +211,11 @@ export default function OneTeacher() {
               {ourData.isLeader == false && "No"}
               {ourData.isLeader == true && "Yes"}
             </h2>
+            <div className="form-group">
+              <label>tutorName</label>
+
+              <h2 className="form-control">{ourData.tutorName}</h2>
+            </div>
             <label>Status</label>
             <h2 className="form-control">{ourData.status}</h2>
             <label>Passport Image</label>
