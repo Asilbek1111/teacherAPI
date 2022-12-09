@@ -38,7 +38,7 @@ export default function Dashboard() {
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (isLoaded) {
-    return <div>Loading...</div>;
+    return <div>Loading....</div>;
   } else {
     return (
       <div class="content-wrapper">
@@ -47,7 +47,14 @@ export default function Dashboard() {
             <div className="col-12">
               <div className="card">
                 <div className="card-header">
-                  <h3 className="card-title">Responsive Hover Table</h3>
+                  <h3 className="card-title">
+                    <a
+                      href="https://university-docs-production.up.railway.app/file.xls"
+                      download="excel"
+                    >
+                      <button className="btn btn-success">Import qilish</button>
+                    </a>
+                  </h3>
                   <div className="card-tools">
                     <div
                       className="input-group input-group-sm"
