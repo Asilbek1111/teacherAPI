@@ -41,7 +41,7 @@ export default function BasicTabs() {
   const [employmentType, setEmploymentType] = useState("");
   const [employmentFieldId, setemploymentFieldId] = useState("");
   const [leader, setLeader] = useState(null);
-  const [interestIds, setInterestIds] = useState("");
+  const [interestIds, setInterestIds] = useState([]);
   const [study1, setStudy1] = useState([]);
   const [imgSrc, setImgSrc] = useState(null);
   const [image, setImage] = useState(null);
@@ -62,6 +62,22 @@ export default function BasicTabs() {
   };
 
   let Submit = () => {
+
+
+ var requestOptions2 = {
+   method: "GET",
+   redirect: "follow",
+ };
+
+ fetch(
+   `https://university-docs-production.up.railway.app/api/student/info/${teacherId}`,
+   requestOptions2
+ )
+   .then((response) => response.json())
+   .then((result) => {console.log(result);})
+   .catch((error) => console.log("error", error));
+
+
     var formdata = new FormData();
     formdata.append("hemisStudentId", teacherId);
     formdata.append("status", status);
