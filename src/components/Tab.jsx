@@ -36,7 +36,10 @@ export default function BasicTabs() {
   const [value, setValue] = useState(0);
   const { teacherId, setteacherId, study, setStudy, fieldId, setFieldId } =
     useContext(MyContext);
-
+  const [isLoaded5, setIsLoaded5] = useState(false);
+  const [ourData1, setOurData1] = useState([]);
+  const [tutors, setTutors] = useState([]);
+  const [tutor, setTutor] = useState("78a5a035-92de-4e89-9d24-c9e3707c3a30");
   const [status, setStatus] = useState("SINGLE");
   const [employmentType, setEmploymentType] = useState("WORKS_FORMAL");
   const [employmentFieldId, setemploymentFieldId] = useState(
@@ -93,9 +96,6 @@ export default function BasicTabs() {
       .then((result) => console.log(result))
       .catch((error) => console.log("error", error));
   };
-  const [isLoaded5, setIsLoaded5] = useState(false);
-  const [ourData1, setOurData1] = useState([]);
-  const [tutor, setTutor] = useState("");
 
   useEffect(() => {
     fetch(
@@ -109,7 +109,7 @@ export default function BasicTabs() {
           setIsLoaded5(false);
           setStudy(res.data.fields.STUDIES);
           setFieldId(res.data.fields.WORKS_FORMAL);
-          setTutor(res.data.tutors[0].id);
+          setTutors(res.data.tutors);
           // console.log(ourData)
         },
 
@@ -173,53 +173,58 @@ export default function BasicTabs() {
                     <div className="form-group">
                       <label htmlFor="exampleInputPassword1">Tutor Name:</label>
 
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="exampleInputEmail1"
-                        placeholder="Tutor name"
-                      />
-                    </div>
-                    <label htmlFor="exampleInputFile1">Passport</label>
-                    <div>
-                      <label htmlFor="imgDoctor" className="cursor-pointer">
-                        <img
-                          src={imgSrc}
-                          style={{ width: "240px", height: "240px" }}
-                          className="object-cover object-center mx-auto"
-                        />
-                      </label>
-                      <input
-                        type="file"
-                        id="imgDoctor"
-                        className="invisible"
-                        // enctype="multipart/form-data"
-                        accept="image/*"
-                        onChange={(e) => handleImageUpload(e)}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="exampleInputFile1">Document</label>
+                      <select
+                        className="form-select"
+                        onChange={(e) => setTutor(e.target.value)}
+                      >
+                        {tutors?.map((e) => (
+                          <option value={e.id}>{e.fullName}</option>
+                        ))}
+                      </select>
+                      <label htmlFor="exampleInputFile1">Passport</label>
                       <div>
-                        <label htmlFor="imgDoctor2" className="cursor-pointer">
+                        <label htmlFor="imgDoctor" className="cursor-pointer">
                           <img
-                            src={imgSrc2}
+                            src={imgSrc}
                             style={{ width: "240px", height: "240px" }}
                             className="object-cover object-center mx-auto"
                           />
                         </label>
                         <input
                           type="file"
-                          id="imgDoctor2"
+                          id="imgDoctor"
                           className="invisible"
                           // enctype="multipart/form-data"
                           accept="image/*"
-                          onChange={(e) => handleImageUpload2(e)}
+                          onChange={(e) => handleImageUpload(e)}
                         />
                       </div>
+                      <div className="form-group">
+                        <label htmlFor="exampleInputFile1">Document</label>
+                        <div>
+                          <label
+                            htmlFor="imgDoctor2"
+                            className="cursor-pointer"
+                          >
+                            <img
+                              src={imgSrc2}
+                              style={{ width: "240px", height: "240px" }}
+                              className="object-cover object-center mx-auto"
+                            />
+                          </label>
+                          <input
+                            type="file"
+                            id="imgDoctor2"
+                            className="invisible"
+                            // enctype="multipart/form-data"
+                            accept="image/*"
+                            onChange={(e) => handleImageUpload2(e)}
+                          />
+                        </div>
+                      </div>
                     </div>
+                    <div className="box-footer"></div>
                   </div>
-                  <div className="box-footer"></div>
                 </form>
               </div>
               <div className="box box-success">
