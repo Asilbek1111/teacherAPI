@@ -37,12 +37,18 @@ export default function BasicTabs() {
   const { teacherId, setteacherId, study, setStudy, fieldId, setFieldId } =
     useContext(MyContext);
 
-  const [status, setStatus] = useState("");
-  const [employmentType, setEmploymentType] = useState("");
-  const [employmentFieldId, setemploymentFieldId] = useState("");
-  const [leader, setLeader] = useState(null);
-  const [interestIds, setInterestIds] = useState([]);
-  const [study1, setStudy1] = useState([]);
+  const [status, setStatus] = useState("SINGLE");
+  const [employmentType, setEmploymentType] = useState("WORKS_FORMAL");
+  const [employmentFieldId, setemploymentFieldId] = useState(
+    "045a5bd0-ae87-4180-8b6f-199a4e779988"
+  );
+  const [leader, setLeader] = useState(false);
+  const [interestIds, setInterestIds] = useState([
+    "03de6e03-c58b-4d91-a2ee-b3c1ee5dab37",
+  ]);
+  const [study1, setStudy1] = useState([
+    "6b021208-4faa-4b08-b64f-4aff8a02fcf2",
+  ]);
   const [imgSrc, setImgSrc] = useState(null);
   const [image, setImage] = useState(null);
   const [imgSrc2, setImgSrc2] = useState(null);
@@ -62,22 +68,6 @@ export default function BasicTabs() {
   };
 
   let Submit = () => {
-
-
- var requestOptions2 = {
-   method: "GET",
-   redirect: "follow",
- };
-
- fetch(
-   `https://university-docs-production.up.railway.app/api/student/info/${teacherId}`,
-   requestOptions2
- )
-   .then((response) => response.json())
-   .then((result) => {console.log(result);})
-   .catch((error) => console.log("error", error));
-
-
     var formdata = new FormData();
     formdata.append("hemisStudentId", teacherId);
     formdata.append("status", status);
@@ -99,7 +89,7 @@ export default function BasicTabs() {
       "https://university-docs-production.up.railway.app/api/student",
       requestOptions
     )
-      .then((response) => response.text())
+      .then((response) => response.json())
       .then((result) => console.log(result))
       .catch((error) => console.log("error", error));
   };
@@ -271,9 +261,10 @@ export default function BasicTabs() {
                           className="form-select"
                           onClick={(e) => setStatus(e.target.value)}
                         >
-                          <option value="WORKS_FORMAL">WORKS FORMAL</option>
-                          <option value="UNEMPLOYED">UNEMPLOYED</option>
                           <option value="SINGLE">SINGLE</option>
+                          <option value="MARRIED">MARRIED</option>
+                          <option value="DIVORCED">DIVORCED</option>
+                          <option value="WIDOW">WIDOW</option>
                         </select>
                       </div>
                     </div>
@@ -338,8 +329,8 @@ export default function BasicTabs() {
                         className="form-select"
                         onClick={(e) => setLeader(e.target.value)}
                       >
-                        <option value="true">Yes</option>
                         <option value="false">No</option>
+                        <option value="true">Yes</option>
                         {/* <option value="divorced">Divorced</option> */}
                       </select>
                       <label>Studies</label>

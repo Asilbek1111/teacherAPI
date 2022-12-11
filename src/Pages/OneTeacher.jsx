@@ -10,6 +10,14 @@ export default function OneTeacher() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isLoaded2, setIsLoaded2] = useState(false);
   const [ourData, setOurData] = useState([]);
+  fetch(
+    `https://university-docs-production.up.railway.app/api/student/info/${teacherId}`
+  )
+    .then((response) => response.json())
+    .then((result) => {
+      console.log("Oquvchini Get qilib olyapti");
+    })
+    .catch((error) => console.log("error", error));
 
   useEffect(() => {
     fetch(
