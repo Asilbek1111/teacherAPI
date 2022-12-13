@@ -1,14 +1,16 @@
-import React from 'react';
+import React from "react";
 
 export default function Footer() {
   return (
-  <footer className="main-footer">
-  <strong>Copyright © 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-  All rights reserved.
-  <div className="float-right d-none d-sm-inline-block">
-    <b>Version</b> 3.2.0
-  </div>
-</footer>
-
+    <footer className="main-footer">
+      <strong>
+        Copyright © 2022
+        <a href="https://english-philology.vercel.app/">{"   "}English Philology</a>.
+      </strong><br />
+      Developed by Asilbek H, Sevinch A, Yorqinjon M
+      <div className="float-right d-none d-sm-inline-block">
+        <b>Version</b> 1.0
+      </div>
+    </footer>
   );
 }

@@ -274,12 +274,7 @@ export default function BasicTabs() {
                       </div>
                     </div>
                     <div className="form-group">
-                      <label
-                        htmlFor="inputPassword3"
-                        className="col-sm-2 control-label"
-                      >
-                        Hemis Student ID
-                      </label>
+                      <label>Hemis Student ID</label>
                       <div className="col-sm-10">
                         <h2 className="form-control">{teacherId}</h2>
                       </div>
@@ -301,6 +296,7 @@ export default function BasicTabs() {
                   <form role="form">
                     <div className="form-group">
                       <label>Employment Type</label>
+                      <br />
 
                       <select
                         className="form-select"
@@ -316,6 +312,7 @@ export default function BasicTabs() {
                     </div>
                     <div className="form-group">
                       <label>Employment Field</label>
+                      <br />
                       <select
                         className="form-select"
                         onClick={(e) => setemploymentFieldId(e.target.value)}
@@ -329,6 +326,7 @@ export default function BasicTabs() {
                     </div>
                     <div className="form-group">
                       <label>Is Leader?</label>
+                      <br />
 
                       <select
                         className="form-select"
@@ -337,8 +335,9 @@ export default function BasicTabs() {
                         <option value="false">No</option>
                         <option value="true">Yes</option>
                         {/* <option value="divorced">Divorced</option> */}
-                      </select>
+                      </select><br />
                       <label>Studies</label>
+                      <br />
                       <select
                         className="form-select"
                         onChange={(e) => {

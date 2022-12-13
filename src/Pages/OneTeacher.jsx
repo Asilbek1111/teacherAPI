@@ -1,4 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
+import Header from "../components/Header";
+import Sidebar from "../components/Sidebar";
 import BasicTabs from "../components/Tab";
 import { MyContext } from "../Contexts/Context";
 
@@ -74,6 +76,8 @@ export default function OneTeacher() {
 
   return (
     <>
+    <Header />
+      <Sidebar />
       {isLoaded ? (
         <div> Loading...</div>
       ) : (
@@ -82,8 +86,9 @@ export default function OneTeacher() {
           style={{
             width: "80%",
             margin: "auto",
-            marginTop: "5rem",
+            marginTop: "2rem",
             paddingTop: "2rem",
+            marginLeft: "17rem",
           }}
         >
           <h1 className="text-center">Talaba Ma'lumoti</h1>
@@ -208,8 +213,11 @@ export default function OneTeacher() {
               </div>
             </div>
           </section>
+          <hr />
           <div className="getreq container">
             <h1>Qo'shimcha ma'lumotlar</h1>
+            <div className="left"></div>
+            <div className="right"></div>
             <label>Employment Field</label>
             <h2 className="form-control">{ourData.employmentField}</h2>
             <label>Employment Type</label>
